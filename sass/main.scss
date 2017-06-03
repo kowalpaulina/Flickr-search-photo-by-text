@@ -1,0 +1,287 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*MY CODE*/
+
+$yellowColor: #FFDF00;
+$darkColor: #555;
+
+html {
+    position: relative;
+    min-height: 100%;
+	 margin:0;
+    padding:0;
+}
+
+body{
+	overflow-x: hidden;
+    font-family: 'Open Sans', sans-serif;
+	 margin:0;
+    padding:0;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.main-container{
+	width: 80%;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	margin-bottom: 130px;
+}
+
+//form
+
+.flickr-api-form{
+	margin: 50px 0;
+    height: 70px;
+	
+}
+
+.flickr-api-form-input, .flickr-api-form-button{
+	height: 70px;
+	outline: none;
+	border: 1px solid $yellowColor;
+	box-sizing:border-box;
+	font-size: 24px;
+    float: right;
+}
+
+.flickr-api-form-input{
+	width: 25%;
+	padding-left: 10px;
+}
+
+.flickr-api-form-button{
+	background-color: $yellowColor;
+	width: 25%;
+	color: #fff;
+    cursor:pointer;
+}
+
+.photos{
+	width: 100%;
+	margin: 10% auto;
+	clear: both;
+
+	ul{
+		display: flex;
+		flex-wrap: wrap;
+	}
+}
+
+.photos ul li{
+	width: 150px;
+	height: 150px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 15px;
+    box-shadow: 10px 10px 39px -19px rgba(0,0,0,0.75);
+    transition: all 0.5s;
+    cursor: pointer;
+    
+    &:hover{
+        box-shadow: 10px 10px 39px -22px rgba(0,0,0,0.75);
+    }
+}
+
+
+//left side panel with exif and big photo
+
+.exif-section{
+	position: fixed;
+	top: 0;
+	left: 0; 
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	align-items: center;
+	background: $yellowColor;
+	overflow-y: auto;
+	width: 660px;
+
+	.close-button{
+		margin-left: 90%;
+		margin-top: 10px;
+		color: $darkColor;
+		font-size: 200%;
+		cursor: pointer;
+        font-weight: 700;
+	}
+
+	h3{
+		color: #fff;
+		font-size: 150%;
+		text-align: center;
+		padding: 40px 0;
+        font-weight: 600;
+	}
+	
+
+	&.transform{
+		transform: translateX(-100%);
+	}
+
+	&.remove-transform{
+		transform: translateX(0%);
+	}
+
+	.exif-description{
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		padding-top: 30px;
+		padding-bottom: 15px;
+
+		ul{
+			width: 90%;
+		}
+	}
+
+	ul li {
+		color: $darkColor;
+		width: 98%;
+		overflow-wrap: break-word;
+		line-height: 1.5;	
+        font-weight: 300;
+        font-size: 90%;
+		text-align: left;
+
+		&:last-child{
+			padding-bottom: 15px;
+		}
+	}
+}
+
+.display-exif-description{
+		transform: translateX(0%);
+	}
+
+
+//scrollbar
+
+.exif-section::-webkit-scrollbar-track,body::-webkit-scrollbar-track{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.exif-section::-webkit-scrollbar,body::-webkit-scrollbar{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.exif-section::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: $darkColor;
+}
+
+//api info
+
+.flickr-api-info{
+    position: fixed;
+    bottom: 300px;
+    right: 0;
+    z-index: 999;
+    background-color: $yellowColor;
+    height: 50px;
+    width: 150px;
+    font-size: 150%;
+    text-transform: capitalize;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+	transform: rotate(-90deg);
+    transform-origin: right bottom 0;
+}
+
+//footer
+
+.footer{
+    width: 100%;
+    color: #fff;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $yellowColor;
+    font-size: 90%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: -1;
+}
+
+.footer p{
+    margin-top: 15px;
+}
+
+.icon{
+    margin: 15px;
+}
+
+.ion-social-external-link{
+    font-size:230%;
+    color:#fff;
+    margin-right: 15px;
+}
