@@ -9,11 +9,15 @@ let bigImage;
 let exifDescription;
 
 
-function takeInputValue(){
+function takeInputValue(event){
     var searchInputValue = searchInput.value;
+
     event.preventDefault();
     event.stopImmediatePropagation();    
     deleteListOfPhoto();
+
+    //remove "no-result" info
+    document.getElementById("no-result-info").classList.remove("true");
 
     if(searchInputValue==""){
         if(exifSection.classList.contains("remove-transform")){hiddenExifBox();}
@@ -35,13 +39,17 @@ function getPhotosData(data){
     let photosDataArray = [];
     let photoObject={};
 
+    if(dataPhoto.length==0){
+        document.getElementById("no-result-info").classList.add("true");
+    }
+
     for(let i=0; i<dataPhoto.length;i++){
         photoObject[i] = {};
         photoObject[i].url = `https://farm${dataPhoto[i].farm}.staticflickr.com/${dataPhoto[i].server}/${dataPhoto[i].id}_${dataPhoto[i].secret}_t.jpg`;
         photoObject[i].id = dataPhoto[i].id;
         photosDataArray.push(photoObject[i]);
     }
-    //console.log(photosDataArray);
+
     displayPhotos(photosDataArray,dataPhoto);
 
 }
@@ -101,7 +109,7 @@ function getExifDetailsWithPhoto(data){
             for(i=0; i<data.photo.exif.length;i++){
                 arrayOfExifDetails.push(`${data.photo.exif[i].label}: ${data.photo.exif[i].raw._content}`);}
         }else{
-            console.log(data.photo.exif.length);
+            
             arrayOfExifDetails = ['brak danych'];
     }
     var exifData = arrayOfExifDetails;

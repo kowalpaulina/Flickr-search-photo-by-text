@@ -111,6 +111,24 @@ body{
     cursor:pointer;
 }
 
+//no result info
+
+.no-result-info{
+	display: none;
+}
+
+.no-result-info.true{
+	display: block;
+	text-align: center;
+	padding: 10px;
+	background-color: $yellowColor;
+	color: #000;
+	line-height: 1.5;
+}
+
+
+//photo-list
+
 .photos{
 	width: 100%;
 	margin: 10% auto;
@@ -285,3 +303,32 @@ body{
     color:#fff;
     margin-right: 15px;
 }
+
+//media queries
+
+@media(max-width:700px){
+	.flickr-api-form-input, .flickr-api-form-button{
+		width: 45%;
+	}
+}
+
+@media(max-width:650px){
+	.exif-section{
+		max-width: 100%;
+
+		img{
+			width: 100%;
+			
+		}
+	}
+}
+
+@media(max-width:400px){
+	.flickr-api-form-input, .flickr-api-form-button{
+		width: 50%;
+	}
+}
+
+
+
+
